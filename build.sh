@@ -13,8 +13,10 @@ container=$(buildah from docker.io/mtlynch/ingredient-phrase-tagger:latest)
 buildah run ${container} -- mkdir model
 buildah run ${container} -- ./bin/train-prod-model model
 buildah commit --squash --rm ${container} ${IMAGE_NAME}:${IMAGE_COMMIT}
+buildah tag ${IMAGE_NAME}:${IMAGE_COMMIT} ${IMAGE_NAME}:latest
 
 if [ -n "${GITLAB_USER_ID}" ]; then
     REGISTRY_AUTH_FILE=${HOME}/auth.json echo "${CI_REGISTRY_PASSWORD}" | buildah login -u "${CI_REGISTRY_USER}" --password-stdin ${CI_REGISTRY}
     buildah push ${IMAGE_NAME}:${IMAGE_COMMIT}
+    buildah push ${IMAGE_NAME}:latest
 fi
