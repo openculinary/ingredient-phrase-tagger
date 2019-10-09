@@ -18,7 +18,7 @@ fi
 container=$(buildah from docker.io/mtlynch/ingredient-phrase-tagger:latest)
 buildah run ${container} -- mkdir model
 buildah run ${container} -- ./bin/train-prod-model model
-buildah run ${container} -- ln -s model/*.crfmodel model/latest
+buildah run ${container} -- /bin/sh -c 'ln -s model/*.crfmodel model/latest'
 buildah commit --squash --rm ${container} ${IMAGE_NAME}:${IMAGE_COMMIT}
 buildah tag ${IMAGE_NAME}:${IMAGE_COMMIT} ${IMAGE_NAME}:latest
 
