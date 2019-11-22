@@ -4,11 +4,11 @@ This component is a thin wrapper around the [ingredient-phrase-tagger](https://h
 
 The wrapper exists solely to build a base image containing a ready-trained ingredient phrase tagging model which is accessible via symlink at a fixed filesystem path.
 
-The [ingredient-parser](../ingredient-parser) service image is built on top of the image produced by this repository.
+The [ingredient-parser](https://www.github.com/openculinary/ingredient-parser) service image is built on top of the image produced by this repository.
 
 ## Install dependencies
 
-Make sure to follow the RecipeRadar [infrastructure](../infrastructure) setup to ensure all cluster dependencies are available in your environment.
+Make sure to follow the RecipeRadar [infrastructure](https://www.github.com/openculinary/infrastructure) setup to ensure all cluster dependencies are available in your environment.
 
 ## Local Build
 
